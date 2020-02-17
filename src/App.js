@@ -4,17 +4,22 @@ import './App.css';
 class App extends Component {
   state = {
     equation: '',
-    answer: 0
+    buttons: ["7","8","9","C","4","5","6","x","1","2","3","÷","+","0","-","="],
   }
 
-  numberButton = (num) =>{
-    this.setState({equation: this.state.equation + num })
-    console.log(this.state.equation)
-  }
+  clickHandler = (button) => {
+    
+    this.setState({equation: this.state.equation + button })
+    
+    if(button === "C"){
+      this.clearButton()
+    } else if (button === "="){
+      this.equalButton()
+    } 
+};
 
   clearButton = () =>{
     this.setState({equation: '' })
-    console.log(this.state.equation)
   }
   
   equalButton = () =>{
@@ -59,55 +64,24 @@ class App extends Component {
         }
     }
     this.setState({equation: expr })
-    console.log(expr)
   }
 
   render(){
   return (
     <div className="App">
       <h1>{this.state.equation}</h1>
-      <Button click = {this.numberButton} number="7"></Button>
-      <Button click = {this.numberButton} number="8"></Button>
-      <Button click = {this.numberButton} number="9"></Button>
-      <ClearButton click = {this.clearButton} number="C"></ClearButton>
-      <Button click = {this.numberButton} number="4"></Button>
-      <Button click = {this.numberButton} number="5"></Button>
-      <Button click = {this.numberButton} number="6"></Button>
-      <Button click = {this.numberButton} number="x"></Button>
-      <Button click = {this.numberButton} number="1"></Button>
-      <Button click = {this.numberButton} number="2"></Button>
-      <Button click = {this.numberButton} number="3"></Button>
-      <Button click = {this.numberButton} number="÷"></Button>
-      <Button click = {this.numberButton} number="+"></Button>
-      <Button click = {this.numberButton} number="0"></Button>
-      <Button click = {this.numberButton} number="-"></Button>
-      <EqualButton click = {this.equalButton} number="="></EqualButton>
+      {this.state.buttons.map((button,index) => {
+        return <Button key = {index} label={button} click = {this.clickHandler}/>;
+      })}
     </div>
   );
   }
 }
 
-
 const Button = (props) => {
   return(
     <div>
-      <button className="button" onClick={() => props.click(props.number)}>{props.number}</button>
-    </div>
-  )
-}
-
-const ClearButton = (props) => {
-  return(
-    <div>
-      <button className="clearButton" onClick={() => props.click()}>{props.number}</button>
-    </div>
-  )
-}
-
-const EqualButton = (props) => {
-  return(
-    <div>
-      <button className="equalButton" onClick={() => props.click()}>{props.number}</button>
+      <button className="button" onClick={() => props.click(props.label)}>{props.label}</button>
     </div>
   )
 }

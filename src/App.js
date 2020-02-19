@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import Button from './components/button'
 
 class App extends Component {
   state = {
@@ -78,12 +79,6 @@ class App extends Component {
   }
 }
 
-const Button = (props) => {
-  return(
-    <div>
-      <button className="button" onClick={() => props.click(props.label)}>{props.label}</button>
-    </div>
-  )
-}
+
 
 export default App;

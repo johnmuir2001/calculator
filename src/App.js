@@ -67,14 +67,26 @@ class App extends Component {
     this.setState({equation: expr })
   }
 
+  myFunction() {
+    let body = document.button;
+    body.classList.toggle("dark-mode");
+ }
+
   render(){
   return (
-    <div className="App">
-      <h1>{this.state.equation}</h1>
-      {this.state.buttons.map((button,index) => {
-        return <Button key = {index} label={button} click = {this.clickHandler}/>;
-      })}
-    </div>
+      <div className="App">
+        <h1>{this.state.equation}</h1>
+        {this.state.buttons.map((button,index) => {
+          return <Button key = {index} label={button} click = {this.clickHandler}/>;
+        })}
+        <div className="darkWrap">
+          <label class="switch">
+            <input type="checkbox" onClick={this.myFunction}></input>
+            <span class="slider round"></span>
+          </label>
+          <h2>Dark Mode</h2>
+        </div>
+      </div>
   );
   }
 }

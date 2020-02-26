@@ -12,7 +12,7 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
 }
-.button, .clearButton, .equalButton {
+.button{
   border: 0;
   outline: 0;
   width: 50px;
@@ -50,22 +50,80 @@ h1{
   box-shadow: inset 2px 2px 2px #BABECC, inset -2px -2px 2px white;
 }
 
-.clearButton {
-  color:red;
+
+.darkWrap{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  width: 280px;
+  margin: 20px 0px;
 }
-.clearButton:hover {
-  box-shadow: -2px -2px 5px white, 2px 2px 5px #BABECC;
-}
-.clearButton:active {
-  box-shadow: inset 2px 2px 2px #BABECC, inset -2px -2px 2px white;
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
 }
 
-.equalButton {
-  color:rgb(0, 184, 0);
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
-.equalButton:hover {
-  box-shadow: -2px -2px 5px white, 2px 2px 5px #BABECC;
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
-.equalButton:active {
-  box-shadow: inset 2px 2px 2px #BABECC, inset -2px -2px 2px white;
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+h2{
+  margin: 10px;
+}
+
+.dark-mode {
+  background: #474848;
+}
+.darkButton{
+  background: #474848;
+  box-shadow: -5px -5px 10px #3c3d3d,  5px 5px 10px #525353;
 }
